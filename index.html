@@ -830,6 +830,7 @@
             <button class="nav-btn" data-section="attractions"><span>📍</span>景點</button>
             <button class="nav-btn" data-section="transport"><span>🚃</span>交通</button>
             <button class="nav-btn" data-section="phrases"><span>💬</span>會話</button>
+            <button class="nav-btn" data-section="currency"><span>💴</span>匯率</button>
             <button class="nav-btn" data-section="info"><span>ℹ️</span>資訊</button>
         </div>
     </nav>
@@ -1385,6 +1386,37 @@
             <div id="phraseList"></div>
         </section>
 
+        <!-- Currency Section -->
+        <section id="currency">
+            <div class="section-header">
+                <h2>💴 匯率換算</h2>
+                <p>即時日圓 (JPY) ⇄ 台幣 (TWD)</p>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary);">日圓
+                                JPY</label>
+                            <input type="number" id="jpyInput" step="0.01" placeholder="輸入金額"
+                                style="width: 100%; padding: 15px; border: 2px solid var(--light-gray); border-radius: var(--radius-sm); font-size: 1.2rem;">
+                        </div>
+                        <div style="text-align: center; font-size: 1.5rem; color: var(--gold);">⇅</div>
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary);">台幣
+                                TWD</label>
+                            <input type="number" id="twdInput" step="0.01" placeholder="換算結果"
+                                style="width: 100%; padding: 15px; border: 2px solid var(--light-gray); border-radius: var(--radius-sm); font-size: 1.2rem;">
+                        </div>
+                        <div id="rateInfo"
+                            style="text-align: center; font-size: 0.85rem; color: var(--gray); background: var(--cream); padding: 10px; border-radius: 8px;">
+                            正在獲取最新匯率...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Info Section -->
         <section id="info">
             <div class="section-header">
@@ -1546,6 +1578,37 @@
         });
 
         renderPhrases();
+
+        // 匯率換算邏輯
+            let jpyToTwdRate = 0.21; // 預設匯率
+
+            async function fetchExchangeRate() {
+                try {
+                    const response = await fetch('https://open.er-api.com/v6/latest/JPY');
+                    const data = await response.json();
+                    if (data && data.rates && data.rates.TWD) {
+                        jpyToTwdRate = data.rates.TWD;
+                        document.getElementById('rateInfo').innerText = `即時匯率：1 JPY = ${jpyToTwdRate.toFixed(4)} TWD`;
+                    }
+                } catch (e) {
+                    document.getElementById('rateInfo').innerText = `使用預設匯率：1 JPY = ${jpyToTwdRate} TWD`;
+                }
+            }
+
+            const jpyInput = document.getElementById('jpyInput');
+            const twdInput = document.getElementById('twdInput');
+
+            jpyInput.addEventListener('input', () => {
+                if (!jpyInput.value) { twdInput.value = ''; return; }
+                twdInput.value = (parseFloat(jpyInput.value) * jpyToTwdRate).toFixed(2);
+            });
+
+            twdInput.addEventListener('input', () => {
+                if (!twdInput.value) { jpyInput.value = ''; return; }
+                jpyInput.value = (parseFloat(twdInput.value) / jpyToTwdRate).toFixed(2);
+            });
+
+            fetchExchangeRate();
     </script>
 </body>
 
