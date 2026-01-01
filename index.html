@@ -1447,19 +1447,29 @@
             </div>
             <div class="info-grid">
                 <div class="info-card">
+                    <div id="osaka-icon" class="icon">⛅</div>
+                    <h4>今日天氣 (大阪)</h4>
+                    <p id="osaka-weather">正在獲取...</p>
+                </div>
+                <div class="info-card">
+                    <div id="kyoto-icon" class="icon">⛅</div>
+                    <h4>今日天氣 (京都)</h4>
+                    <p id="kyoto-weather">正在獲取...</p>
+                </div>
+                <div class="info-card">
                     <div class="icon">🌡️</div>
                     <h4>大阪氣溫</h4>
-                    <p>3°C - 9°C</p>
+                    <p id="osaka-temp">--°C</p>
                 </div>
                 <div class="info-card">
                     <div class="icon">🌡️</div>
                     <h4>京都氣溫</h4>
-                    <p>1°C - 8°C</p>
+                    <p id="kyoto-temp">--°C</p>
                 </div>
                 <div class="info-card">
                     <div class="icon">💱</div>
                     <h4>匯率參考</h4>
-                    <p>¥100 ≈ NT$21</p>
+                    <p id="rate-summary">正在獲取匯率...</p>
                 </div>
                 <div class="info-card">
                     <div class="icon">🔌</div>
@@ -1596,6 +1606,14 @@
                 const data = await response.json();
                 if (data && data.rates && data.rates.TWD) {
                     jpyToTwdRate = data.rates.TWD;
+
+                    // 計算 100 日圓等於多少台幣
+                    const twd100 = (100 * jpyToTwdRate).toFixed(1);
+                    const summaryElement = document.getElementById('rate-summary');
+                    if (summaryElement) {
+                        summaryElement.innerText = `¥100 ≈ NT$${twd100}`;
+                    }
+
                     document.getElementById('rateInfo').innerText = `即時匯率：1 JPY = ${jpyToTwdRate.toFixed(4)} TWD`;
                 }
             } catch (e) {
@@ -1617,6 +1635,51 @@
         });
 
         fetchExchangeRate();
+        setInterval(fetchExchangeRate, 3600000); // 3600000 毫秒 = 1 小時
+
+        // 天氣資訊邏輯
+        // 統一的天氣代碼轉換函式
+        function getWeatherDesc(code) {
+            if (code === 0) return { desc: "晴朗", icon: "☀️" };
+            if (code >= 1 && code <= 3) return { desc: "多雲", icon: "☁️" };
+            if (code >= 51 && code <= 67) return { desc: "有雨", icon: "☔" };
+            if (code >= 71 && code <= 77) return { desc: "降雪", icon: "❄️" };
+            return { desc: "晴朗", icon: "☀️" };
+        }
+
+        async function updateWeather(city, lat, lon) {
+            try {
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data && data.current_weather) {
+                    const current = data.current_weather;
+                    const weather = getWeatherDesc(current.weathercode);
+
+                    // 更新天氣狀態與圖示
+                    document.getElementById(`${city}-weather`).innerText = weather.desc;
+                    document.getElementById(`${city}-icon`).innerText = weather.icon;
+
+                    // 更新當日最高/最低氣溫 (從 daily 數據抓取)
+                    const maxTemp = data.daily.temperature_2m_max[0];
+                    const minTemp = data.daily.temperature_2m_min[0];
+                    document.getElementById(`${city}-temp`).innerText = `${minTemp}°C - ${maxTemp}°C`;
+                }
+            } catch (e) {
+                console.error(`${city} 天氣抓取失敗`, e);
+                document.getElementById(`${city}-weather`).innerText = "讀取失敗";
+            }
+        }
+        // 執行初始抓取
+        function fetchAllWeather() {
+            updateWeather('osaka', 34.69, 135.50); // 大阪
+            updateWeather('kyoto', 35.01, 135.76); // 京都
+        }
+
+        fetchAllWeather();
+        // 每 2 小時更新一次
+        setInterval(fetchAllWeather, 7200000);
 
         function displayLastUpdated() {
             // 取得檔案最後修改時間
