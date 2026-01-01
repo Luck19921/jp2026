@@ -1485,8 +1485,9 @@
     </main>
 
     <footer>
-        <p>Albert & Irene 2026日本之旅 🗾 旅遊助手</p>
+        <p>Albert & Irene 2026日本之旅 🗾 旅遊工具書</p>
         <p style="margin-top: 5px;">Albert祝旅途愉快！いってらっしゃい！</p>
+        <p id="last-update" style="margin-top: 5px; color: var(--cream);"></p>
     </footer>
 
     <script>
@@ -1609,6 +1610,30 @@
             });
 
             fetchExchangeRate();
+
+            function displayLastUpdated() {
+                    // 取得檔案最後修改時間
+                    const date = new Date(document.lastModified);
+
+                    // 格式化日期與時間：YYYY-MM-DD HH:mm:ss
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const hours = String(date.getHours()).padStart(2, '0');
+                    const minutes = String(date.getMinutes()).padStart(2, '0');
+                    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+                    const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+                    // 寫入到 HTML 中
+                    const updateElement = document.getElementById('last-update');
+                    if (updateElement) {
+                        updateElement.innerText = `本專案最後更新時間：${formattedTime}`;
+                    }
+                }
+
+                // 確保頁面載入後執行
+                window.addEventListener('DOMContentLoaded', displayLastUpdated);
     </script>
 </body>
 
