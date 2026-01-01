@@ -1,0 +1,16 @@
+{
+    "name": "2026 旅行計畫工具書",
+    "short_name": "日本之旅",
+    "description": "Albert & Irene的旅遊規劃",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#faf6f0",
+    "theme_color": "#b8232f",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
