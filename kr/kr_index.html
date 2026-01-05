@@ -55,7 +55,7 @@
         nav {
             background: var(--white);
             position: sticky;
-            top: 76px; /* Header height approx */
+            top: 76px;
             z-index: 99;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             overflow-x: auto;
@@ -107,46 +107,48 @@
         .day-header .date { font-size: 0.85rem; opacity: 0.9; margin-top: 3px; }
         .day-content { padding: 20px; }
 
-        /* Timeline Styles */
+        /* Timeline Styles (一般行程用) */
         .timeline-item { display: flex; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed var(--light-gray); }
         .timeline-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
         .timeline-time { flex-shrink: 0; width: 55px; font-size: 0.85rem; font-weight: 600; color: var(--primary); }
         .timeline-content h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 5px; }
         .timeline-content p { font-size: 0.85rem; color: var(--gray); }
 
-        /* Info Grid */
-        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
-        .info-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; text-align: center; }
-        .info-card .icon { font-size: 2rem; margin-bottom: 10px; }
-        .info-card h4 { font-size: 0.85rem; color: var(--gray); margin-bottom: 5px; }
-        .info-card p { font-size: 1rem; font-weight: 600; color: var(--dark); }
+        /* 🚇 交通路線圖樣式 (Transport Route Styles) - 新增 */
+        .transport-route { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
+        .route-header { padding: 15px 20px; background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%); color: var(--white); }
+        .route-header h3 { font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+        .route-header .route-time { font-size: 0.85rem; opacity: 0.9; margin-top: 3px; }
+        .route-body { padding: 20px; }
+        .route-steps { position: relative; padding-left: 30px; }
+        .route-steps::before { content: ''; position: absolute; left: 8px; top: 5px; bottom: 5px; width: 2px; background: var(--light-gray); }
+        
+        .step { position: relative; margin-bottom: 20px; }
+        .step:last-child { margin-bottom: 0; }
+        .step-marker { position: absolute; left: -30px; top: 0; width: 18px; height: 18px; background: var(--white); border: 3px solid var(--primary); border-radius: 50%; z-index: 1; }
+        .step-marker.start { background: var(--primary); }
+        .step-marker.end { background: var(--gold); border-color: var(--gold); }
+        
+        .step-content h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 5px; font-weight: 600; }
+        .step-content p { font-size: 0.85rem; color: var(--gray); }
+        .step-content .tip { background: #fff8e6; border-left: 3px solid var(--gold); padding: 10px 12px; margin-top: 10px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.85rem; color: #665c3b; }
 
-        /* Phrase Card Styles (New) */
-        .phrase-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 18px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border-left: 4px solid var(--primary);
-            position: relative;
-        }
+        .route-price { display: flex; align-items: center; justify-content: space-between; background: var(--cream); padding: 12px 15px; border-radius: var(--radius-sm); margin-top: 15px; }
+        .route-price .label { font-size: 0.85rem; color: var(--gray); }
+        .route-price .price { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+        
+        .route-map-btn { display: block; text-align: center; padding: 12px; margin-top: 15px; background: linear-gradient(135deg, #34a853 0%, #2d8a46 100%); color: var(--white); border-radius: var(--radius-sm); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+
+        /* Phrase Card Styles */
+        .phrase-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; margin-bottom: 12px; cursor: pointer; transition: all 0.2s; border-left: 4px solid var(--primary); position: relative; }
         .phrase-card:active { transform: scale(0.98); background-color: var(--cream); }
         .phrase-zh { font-size: 1rem; font-weight: 500; color: var(--dark); margin-bottom: 8px; }
         .phrase-kr { font-size: 1.2rem; color: var(--primary); font-weight: 700; margin-bottom: 6px; font-family: 'Noto Sans KR', sans-serif;}
         .phrase-romaji { font-size: 0.85rem; color: var(--gray); font-style: italic; }
         .phrase-speaker { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; opacity: 0.7; }
         
-        /* Map Button */
-        .map-btn {
-            display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px;
-            background: linear-gradient(135deg, #4285f4 0%, #2b6ed9 100%);
-            color: var(--white); border: none; border-radius: var(--radius-sm);
-            font-family: inherit; font-size: 0.9rem; font-weight: 500;
-            cursor: pointer; text-decoration: none; margin-top: 15px;
-        }
+        /* General Map Button */
+        .map-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: linear-gradient(135deg, #4285f4 0%, #2b6ed9 100%); color: var(--white); border: none; border-radius: var(--radius-sm); font-family: inherit; font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; margin-top: 15px; }
 
         /* Footer */
         footer { text-align: center; padding: 20px 20px 100px 20px; background: var(--cream); border-top: 1px solid var(--light-gray); }
@@ -174,6 +176,7 @@
     <nav>
         <div class="nav-inner">
             <button class="nav-btn active" data-section="itinerary"><span>📅</span>行程</button>
+            <button class="nav-btn" data-section="transport"><span>🚃</span>交通</button>
             <button class="nav-btn" data-section="phrases"><span>💬</span>會話</button>
             <button class="nav-btn" data-section="currency"><span>₩</span>匯率</button>
             <button class="nav-btn" data-section="info"><span>ℹ️</span>資訊</button>
@@ -272,6 +275,89 @@
                             <p>回程航班，預計 1/12 00:35 抵達台灣</p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="transport">
+            <div class="section-header">
+                <h2>🚃 交通詳細指南</h2>
+                <p>機場來回與轉乘攻略</p>
+            </div>
+
+            <div class="transport-route">
+                <div class="route-header">
+                    <h3>🛫 PUS 機場 → 釜山市區</h3>
+                    <div class="route-time">全程約 45 - 60 分鐘</div>
+                </div>
+                <div class="route-body">
+                    <div class="route-steps">
+                        <div class="step">
+                            <div class="step-marker start"></div>
+                            <div class="step-content">
+                                <h4>金海機場站 (輕軌)</h4>
+                                <p>出國際線航廈，過馬路到對面搭乘「釜山金海輕軌」(紫色線)。</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-marker"></div>
+                            <div class="step-content">
+                                <h4>沙上站 (Sasang) - 轉乘點</h4>
+                                <p>搭乘約 15 分鐘抵達沙上站。下車後沿著指標轉乘「地鐵 2 號線」(綠色線)。</p>
+                                <div class="tip">💡 這裡需要出站再進站，但使用 T-Money 卡轉乘有優惠。</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-marker end"></div>
+                            <div class="step-content">
+                                <h4>西面站 / 海雲台站</h4>
+                                <p>往「西面 (Seomyeon)」方向搭乘。西面站是轉乘大站，可在此換乘 1 號線去南浦洞，或繼續坐到海雲台。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="route-price">
+                        <span class="label">預估車資 (T-Money)</span>
+                        <span class="price">₩2,000 (約 NT$46)</span>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/Gimhae+International+Airport,+Busan/Seomyeon+Station,+Busan" target="_blank" class="route-map-btn">📍 Google 地圖導航 (機場→西面)</a>
+                </div>
+            </div>
+
+            <div class="transport-route">
+                <div class="route-header" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                    <h3>🚕 釜山市區 → PUS 機場</h3>
+                    <div class="route-time">請至少提早 2.5 小時出發</div>
+                </div>
+                <div class="route-body">
+                    <div class="route-steps">
+                        <div class="step">
+                            <div class="step-marker start"></div>
+                            <div class="step-content">
+                                <h4>西面 / 南浦 / 海雲台</h4>
+                                <p>如果行李很多，建議直接搭計程車 (Kakao Taxi)。</p>
+                                <div class="tip">💡 搭地鐵者：請搭回「沙上站 (Sasang)」轉乘輕軌。</div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-marker"></div>
+                            <div class="step-content">
+                                <h4>沙上站 (轉輕軌)</h4>
+                                <p>跟隨飛機標誌 ✈️ 轉乘紫色輕軌線往「加耶大 (Kaya Univ.)」方向，在機場站下車。</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-marker end"></div>
+                            <div class="step-content">
+                                <h4>金海機場國際線</h4>
+                                <p>下車後過天橋即達國際線出境大廳。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="route-price">
+                        <span class="label">計程車預估 (從西面)</span>
+                        <span class="price">₩15,000 ~ ₩18,000</span>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/Seomyeon+Station,+Busan/Gimhae+International+Airport,+Busan" target="_blank" class="route-map-btn">📍 Google 地圖導航 (西面→機場)</a>
                 </div>
             </div>
         </section>
