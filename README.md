@@ -1,1 +1,1 @@
-https://luck19921.github.io/jp2026/
+https://luck19921.github.io/travel2026/
