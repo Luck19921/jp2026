@@ -7,22 +7,28 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="釜山之旅">
     <link rel="apple-touch-icon" href="icon.png">
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Albert & Irene 2026 釜山快閃之旅</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
     <style>
         /* CSS 變數系統 - 釜山海洋藍主題 */
         :root {
-            --primary: #004aad;      /* 釜山藍 */
-            --primary-dark: #002d6b; /* 深海藍 */
-            --gold: #ffcc00;         /* 活力黃 */
-            --cream: #f4f8fb;        /* 淺藍白背景 */
+            --primary: #004aad;
+            /* 釜山藍 */
+            --primary-dark: #002d6b;
+            /* 深海藍 */
+            --gold: #ffcc00;
+            /* 活力黃 */
+            --cream: #f4f8fb;
+            /* 淺藍白背景 */
             --dark: #2c2c2c;
             --gray: #6b6b6b;
             --light-gray: #e8e4de;
@@ -33,8 +39,18 @@
             --radius-sm: 10px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans TC', 'Noto Sans KR', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.7; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Noto Sans KR', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.7;
+        }
 
         /* Header 樣式 */
         header {
@@ -46,10 +62,29 @@
             z-index: 100;
             box-shadow: var(--shadow-lg);
         }
-        .header-content { max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 15px; }
-        .header-icon { font-size: 2rem; }
-        .header-text h1 { font-size: 1.4rem; font-weight: 700; }
-        .header-text p { font-size: 0.85rem; opacity: 0.9; margin-top: 2px; }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-icon {
+            font-size: 2rem;
+        }
+
+        .header-text h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .header-text p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
 
         /* Navigation 樣式 */
         nav {
@@ -60,7 +95,14 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             overflow-x: auto;
         }
-        .nav-inner { display: flex; max-width: 800px; margin: 0 auto; padding: 0 10px; }
+
+        .nav-inner {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
         .nav-btn {
             flex: 1;
             min-width: 70px;
@@ -77,87 +119,451 @@
             align-items: center;
             gap: 4px;
         }
-        .nav-btn span { font-size: 1.3rem; }
+
+        .nav-btn span {
+            font-size: 1.3rem;
+        }
+
         .nav-btn.active {
             color: var(--primary);
             background: linear-gradient(to bottom, transparent, rgba(0, 74, 173, 0.08));
         }
 
         /* Main Content */
-        main { max-width: 800px; margin: 0 auto; padding: 20px 15px 100px; }
-        section { display: none; }
-        section.active { display: block; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .section-header { margin-bottom: 20px; }
-        .section-header h2 { font-size: 1.5rem; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-        .section-header p { color: var(--gray); font-size: 0.9rem; margin-top: 5px; }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px 100px;
+        }
+
+        section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
 
         /* Card Styles */
-        .card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
-        .card-header { padding: 15px 20px; color: var(--white); font-weight: bold; background: var(--primary); }
-        .card-body { padding: 20px; }
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 15px 20px;
+            color: var(--white);
+            font-weight: bold;
+            background: var(--primary);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
 
         /* Day Card Styles */
-        .day-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 25px; overflow: hidden; }
-        .day-header { padding: 18px 20px; color: var(--white); }
-        .day-header.day1 { background: linear-gradient(135deg, #004aad 0%, #003366 100%); }
-        .day-header.day2 { background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%); }
-        .day-header h3 { font-size: 1.15rem; font-weight: 600; }
-        .day-header .date { font-size: 0.85rem; opacity: 0.9; margin-top: 3px; }
-        .day-content { padding: 20px; }
+        .day-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        .day-header {
+            padding: 18px 20px;
+            color: var(--white);
+        }
+
+        .day-header.day1 {
+            background: linear-gradient(135deg, #004aad 0%, #003366 100%);
+        }
+
+        .day-header.day2 {
+            background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+        }
+
+        .day-header h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+        }
+
+        .day-header .date {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .day-content {
+            padding: 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px;
+            text-align: center;
+        }
+
+        .info-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .info-card h4 {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .emergency-card {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .emergency-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .emergency-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .emergency-item:last-child {
+            border-bottom: none;
+        }
+
+        .emergency-item .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .emergency-item .number {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
 
         /* Timeline Styles (一般行程用) */
-        .timeline-item { display: flex; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed var(--light-gray); }
-        .timeline-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-        .timeline-time { flex-shrink: 0; width: 55px; font-size: 0.85rem; font-weight: 600; color: var(--primary); }
-        .timeline-content h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 5px; }
-        .timeline-content p { font-size: 0.85rem; color: var(--gray); }
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .timeline-time {
+            flex-shrink: 0;
+            width: 55px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .timeline-content h4 {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
 
         /* 🚇 交通路線圖樣式 (Transport Route Styles) - 新增 */
-        .transport-route { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 20px; overflow: hidden; }
-        .route-header { padding: 15px 20px; background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%); color: var(--white); }
-        .route-header h3 { font-size: 1rem; display: flex; align-items: center; gap: 8px; }
-        .route-header .route-time { font-size: 0.85rem; opacity: 0.9; margin-top: 3px; }
-        .route-body { padding: 20px; }
-        .route-steps { position: relative; padding-left: 30px; }
-        .route-steps::before { content: ''; position: absolute; left: 8px; top: 5px; bottom: 5px; width: 2px; background: var(--light-gray); }
-        
-        .step { position: relative; margin-bottom: 20px; }
-        .step:last-child { margin-bottom: 0; }
-        .step-marker { position: absolute; left: -30px; top: 0; width: 18px; height: 18px; background: var(--white); border: 3px solid var(--primary); border-radius: 50%; z-index: 1; }
-        .step-marker.start { background: var(--primary); }
-        .step-marker.end { background: var(--gold); border-color: var(--gold); }
-        
-        .step-content h4 { font-size: 0.95rem; color: var(--dark); margin-bottom: 5px; font-weight: 600; }
-        .step-content p { font-size: 0.85rem; color: var(--gray); }
-        .step-content .tip { background: #fff8e6; border-left: 3px solid var(--gold); padding: 10px 12px; margin-top: 10px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.85rem; color: #665c3b; }
+        .transport-route {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
 
-        .route-price { display: flex; align-items: center; justify-content: space-between; background: var(--cream); padding: 12px 15px; border-radius: var(--radius-sm); margin-top: 15px; }
-        .route-price .label { font-size: 0.85rem; color: var(--gray); }
-        .route-price .price { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
-        
-        .route-map-btn { display: block; text-align: center; padding: 12px; margin-top: 15px; background: linear-gradient(135deg, #34a853 0%, #2d8a46 100%); color: var(--white); border-radius: var(--radius-sm); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        .route-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
+            color: var(--white);
+        }
+
+        .route-header h3 {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .route-header .route-time {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+
+        .route-body {
+            padding: 20px;
+        }
+
+        .route-steps {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .route-steps::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: var(--light-gray);
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-marker {
+            position: absolute;
+            left: -30px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: var(--white);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .step-marker.start {
+            background: var(--primary);
+        }
+
+        .step-marker.end {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .step-content h4 {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .step-content .tip {
+            background: #fff8e6;
+            border-left: 3px solid var(--gold);
+            padding: 10px 12px;
+            margin-top: 10px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 0.85rem;
+            color: #665c3b;
+        }
+
+        .route-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--cream);
+            padding: 12px 15px;
+            border-radius: var(--radius-sm);
+            margin-top: 15px;
+        }
+
+        .route-price .label {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .route-price .price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .route-map-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            margin-top: 15px;
+            background: linear-gradient(135deg, #34a853 0%, #2d8a46 100%);
+            color: var(--white);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
 
         /* Phrase Card Styles */
-        .phrase-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; margin-bottom: 12px; cursor: pointer; transition: all 0.2s; border-left: 4px solid var(--primary); position: relative; }
-        .phrase-card:active { transform: scale(0.98); background-color: var(--cream); }
-        .phrase-zh { font-size: 1rem; font-weight: 500; color: var(--dark); margin-bottom: 8px; }
-        .phrase-kr { font-size: 1.2rem; color: var(--primary); font-weight: 700; margin-bottom: 6px; font-family: 'Noto Sans KR', sans-serif;}
-        .phrase-romaji { font-size: 0.85rem; color: var(--gray); font-style: italic; }
-        .phrase-speaker { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; opacity: 0.7; }
-        
+        .phrase-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 18px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 4px solid var(--primary);
+            position: relative;
+        }
+
+        .phrase-card:active {
+            transform: scale(0.98);
+            background-color: var(--cream);
+        }
+
+        .phrase-zh {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .phrase-kr {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .phrase-romaji {
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .phrase-speaker {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
         /* General Map Button */
-        .map-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; background: linear-gradient(135deg, #4285f4 0%, #2b6ed9 100%); color: var(--white); border: none; border-radius: var(--radius-sm); font-family: inherit; font-size: 0.9rem; font-weight: 500; cursor: pointer; text-decoration: none; margin-top: 15px; }
+        .map-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #4285f4 0%, #2b6ed9 100%);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 15px;
+        }
 
         /* Footer */
-        footer { text-align: center; padding: 20px 20px 100px 20px; background: var(--cream); border-top: 1px solid var(--light-gray); }
-        footer p { font-size: 0.8rem; color: var(--gray); }
-        #last-update { font-family: monospace; font-size: 0.7rem; margin-top: 10px; }
+        footer {
+            text-align: center;
+            padding: 20px 20px 100px 20px;
+            background: var(--cream);
+            border-top: 1px solid var(--light-gray);
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        #last-update {
+            font-family: monospace;
+            font-size: 0.7rem;
+            margin-top: 10px;
+        }
 
         @media (max-width: 480px) {
-            .header-text h1 { font-size: 1.2rem; }
-            .nav-btn span { font-size: 1.2rem; }
+            .header-text h1 {
+                font-size: 1.2rem;
+            }
+
+            .nav-btn span {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -319,7 +725,8 @@
                         <span class="label">預估車資 (T-Money)</span>
                         <span class="price">₩2,000 (約 NT$46)</span>
                     </div>
-                    <a href="https://www.google.com/maps/dir/Gimhae+International+Airport,+Busan/Seomyeon+Station,+Busan" target="_blank" class="route-map-btn">📍 Google 地圖導航 (機場→西面)</a>
+                    <a href="https://www.google.com/maps/dir/Gimhae+International+Airport,+Busan/Seomyeon+Station,+Busan"
+                        target="_blank" class="route-map-btn">📍 Google 地圖導航 (機場→西面)</a>
                 </div>
             </div>
 
@@ -357,7 +764,8 @@
                         <span class="label">計程車預估 (從西面)</span>
                         <span class="price">₩15,000 ~ ₩18,000</span>
                     </div>
-                    <a href="https://www.google.com/maps/dir/Seomyeon+Station,+Busan/Gimhae+International+Airport,+Busan" target="_blank" class="route-map-btn">📍 Google 地圖導航 (西面→機場)</a>
+                    <a href="https://www.google.com/maps/dir/Seomyeon+Station,+Busan/Gimhae+International+Airport,+Busan"
+                        target="_blank" class="route-map-btn">📍 Google 地圖導航 (西面→機場)</a>
                 </div>
             </div>
         </section>
@@ -374,7 +782,7 @@
                 <div class="phrase-romaji">An-nyeong-ha-se-yo</div>
                 <div class="phrase-speaker">🔊</div>
             </div>
-            
+
             <div class="phrase-card" onclick="speak('감사합니다')">
                 <div class="phrase-zh">謝謝</div>
                 <div class="phrase-kr">감사합니다</div>
@@ -426,15 +834,22 @@
 
                     <div style="display: flex; flex-direction: column; gap: 20px;">
                         <div>
-                            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary);">韓元 KRW</label>
-                            <input type="number" id="krwInput" step="1" placeholder="輸入韓元 (₩)" style="width: 100%; padding: 15px; border: 2px solid var(--light-gray); border-radius: var(--radius-sm); font-size: 1.2rem;">
+                            <label
+                                style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary);">韓元
+                                KRW</label>
+                            <input type="number" id="krwInput" step="1" placeholder="輸入韓元 (₩)"
+                                style="width: 100%; padding: 15px; border: 2px solid var(--light-gray); border-radius: var(--radius-sm); font-size: 1.2rem;">
                         </div>
                         <div style="text-align: center; font-size: 1.5rem; color: var(--gold);">⇅</div>
                         <div>
-                            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary);">台幣 TWD</label>
-                            <input type="number" id="twdInput" step="0.1" placeholder="換算結果 (NT$)" style="width: 100%; padding: 15px; border: 2px solid var(--light-gray); border-radius: var(--radius-sm); font-size: 1.2rem;">
+                            <label
+                                style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--primary);">台幣
+                                TWD</label>
+                            <input type="number" id="twdInput" step="0.1" placeholder="換算結果 (NT$)"
+                                style="width: 100%; padding: 15px; border: 2px solid var(--light-gray); border-radius: var(--radius-sm); font-size: 1.2rem;">
                         </div>
-                        <div id="rateInfo" style="text-align: center; font-size: 0.85rem; color: var(--gray); background: var(--cream); padding: 10px; border-radius: 8px;">
+                        <div id="rateInfo"
+                            style="text-align: center; font-size: 0.85rem; color: var(--gray); background: var(--cream); padding: 10px; border-radius: 8px;">
                             正在獲取最新匯率...
                         </div>
                     </div>
@@ -445,57 +860,38 @@
         <section id="info">
             <div class="section-header">
                 <h2>ℹ️ 旅行資訊</h2>
-                <p>天氣、住宿與實用貼士</p>
-            </div>
-
-            <div class="card" style="border-left: 5px solid var(--gold);">
-                <div class="card-header" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);">
-                    <h3>🏨 住宿資訊 (Reserved)</h3>
-                </div>
-                <div class="card-body">
-                    <div style="margin-bottom: 15px;">
-                        <h4 style="color: var(--dark); margin-bottom: 5px;">[預留] 釜山飯店名稱</h4>
-                        <p style="color: var(--gray); font-size: 0.9rem;">Busan Hotel Name Placeholder</p>
-                    </div>
-                    <div style="margin-bottom: 15px; display: flex; gap: 10px; align-items: flex-start;">
-                        <span style="font-size: 1.2rem;">📍</span>
-                        <p style="font-size: 0.9rem; color: var(--dark);">
-                            [預留] 飯店地址資訊<br>
-                            Address info goes here...
-                        </p>
-                    </div>
-                    <a href="https://goo.gl/maps/" target="_blank" class="map-btn">📍 Google Map 導航</a>
-                </div>
+                <p>天氣、匯率與重要知識</p>
             </div>
 
             <div class="info-grid">
                 <div class="info-card">
                     <div id="busan-icon" class="icon">⛅</div>
-                    <h4>今日天氣 (釜山)</h4>
-                    <p id="busan-weather">獲取中...</p>
+                    <h4>釜山今日天氣</h4>
+                    <p id="busan-weather" style="font-size: 1.2rem;">獲取中...</p>
                 </div>
                 <div class="info-card">
                     <div class="icon">🌡️</div>
-                    <h4>釜山氣溫</h4>
-                    <p id="busan-temp">--°C</p>
+                    <h4>釜山氣溫範圍</h4>
+                    <p id="busan-temp" style="font-size: 1.4rem; color: var(--primary);">--°C</p>
                 </div>
             </div>
-
-            <div class="tips-card">
-                <h4>📌 韓國旅遊必備</h4>
-                <ul>
-                    <li><strong>地圖 App</strong>：Google Map 在韓國不準，請下載 NAVER Map 或 Kakao Map。</li>
-                    <li><strong>交通卡</strong>：T-Money 或 WOWPASS (地鐵/公車/便利商店皆可用)。</li>
-                    <li><strong>電壓</strong>：220V，圓頭兩孔插座 (需帶轉接頭)。</li>
-                    <li><strong>衣著</strong>：1月海邊風大體感溫度低，請備妥防風保暖大衣。</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <div class="card-body">
-                    <h4 style="margin-bottom:10px;">🚨 緊急聯絡</h4>
-                    <p>韓國報警：112 ｜ 救護車：119</p>
-                    <p>駐釜山辦事處：+82-51-463-7965</p>
+            <div class="info-grid">
+                <div class="info-card" style="text-align: left;">
+                    <h4 style="color: #e67e22; margin-bottom: 5px;">🚨 緊急求助</h4>
+                    <p style="font-size: 0.85rem;">警察: 112</p>
+                    <p style="font-size: 0.85rem;">急救: 119</p>
+                    <p style="font-size: 0.85rem;">駐韓國台北代表部: 82-10-9080-2761</p>
+                </div>
+                <div class="info-card" style="text-align: left;">
+                    <h4 style="color: #9b59b6; margin-bottom: 5px;">⚡ 電壓規格</h4>
+                    <p style="font-size: 0.85rem;">220V 圓頭</p>
+                    <p style="font-size: 0.85rem;">需帶轉接頭</p>
+                </div>
+                 <div class="info-card" style="text-align: left;">
+                    <h4 style="color: #006d09; margin-bottom: 5px;">🗺️ 交通導航</h4>
+                    <p style="font-size: 0.85rem;">地圖: Google Maps在韓國並不準確，請下載Kakao Map 或 Naver Map。</p>
+                    <p style="font-size: 0.85rem;">計程車: 建議使用 Kakao Taxi App 叫車。</p>
+                    <p style="font-size: 0.85rem;">交通卡: T-Money or WOWPASS(MRT, Bus and 便利商店都可用)</p>
                 </div>
             </div>
         </section>
@@ -515,15 +911,15 @@
         navBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const sectionId = btn.getAttribute('data-section');
-                
+
                 // 移除所有 active 狀態
                 navBtns.forEach(b => b.classList.remove('active'));
                 sections.forEach(s => s.classList.remove('active'));
-                
+
                 // 加入當前 active
                 btn.classList.add('active');
                 document.getElementById(sectionId).classList.add('active');
-                
+
                 // 捲動到頂部
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -539,11 +935,11 @@
                 const data = await response.json();
                 if (data && data.rates && data.rates.TWD) {
                     krwToTwdRate = data.rates.TWD;
-                    
+
                     // 更新匯率顯示文字
                     const rateText = `1 KRW = ${krwToTwdRate.toFixed(4)} TWD`;
                     document.getElementById('rateInfo').innerText = `即時匯率：${rateText}`;
-                    
+
                     // 更新匯率參考卡片 (習慣看 1000 韓元等於多少台幣)
                     const krw1000 = (1000 * krwToTwdRate).toFixed(0);
                     document.getElementById('rate-summary').innerText = `₩1,000 ≈ NT$${krw1000}`;
@@ -589,11 +985,11 @@
                 if (data && data.current_weather) {
                     const current = data.current_weather;
                     const weather = getWeatherDesc(current.weathercode);
-                    
+
                     // 更新天氣狀態與圖示
                     document.getElementById('busan-weather').innerText = `${weather.desc} ${current.temperature}°C`;
                     document.getElementById('busan-icon').innerText = weather.icon;
-                    
+
                     // 更新當日高低溫
                     const maxTemp = data.daily.temperature_2m_max[0];
                     const minTemp = data.daily.temperature_2m_min[0];
@@ -603,7 +999,7 @@
                 document.getElementById('busan-weather').innerText = "暫時無法取得";
             }
         }
-        
+
         // 4. 文字轉語音 (Korean Text-to-Speech)
         function speak(text) {
             if ('speechSynthesis' in window) {
@@ -631,7 +1027,7 @@
             fetchExchangeRate();
             fetchWeather();
             displayLastUpdated();
-            
+
             // 定時更新
             setInterval(fetchExchangeRate, 3600000); // 1小時
             setInterval(fetchWeather, 3600000); // 1小時
@@ -647,4 +1043,5 @@
         }
     </script>
 </body>
+
 </html>
